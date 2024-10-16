@@ -1,0 +1,84 @@
+import java.util.Scanner;
+class StudentDetails
+{
+    String name, usn;
+    int marks[]=new int[8];
+    int credits[]=new int[8];
+    double sgpa,totcreds=0.0;
+
+
+void getdetails()
+{
+    
+    Scanner sc= new Scanner(System.in);
+    System.out.println("Enter the USN \t");
+    this.usn=sc.next();
+    System.out.println("Enter the Name \t");
+    this.name=sc.next();
+    for(int i=0;i<8;i++)
+    {
+        System.out.println("Enter the marks of "+(i+1)+"th subject\t");
+        this.marks[i]=sc.nextInt();
+        System.out.println("Enter credits of"+(i+1)+"th subject \t");
+        this.credits[i]=sc.nextInt();
+        this.totcreds=this.totcreds + this.credits[i];
+    }
+}
+void calculateSGPA()
+{
+    int v, grade=0;
+    double sum=0.0;
+    for(int k=0; k<8; k++)
+    {
+        v=(this.marks[k])/10;
+        switch(v)
+        {
+            case 10: grade=10;
+                    break;
+            case 9:
+            case 8:
+            case 7:
+            case 6:
+            case 5:
+            case 4: grade=v+1;
+                    break;
+            case 3:
+            case 2:
+            case 1: System.out.println("Grade ineligible for the "+(k+1)+"th subject \n");
+                    break;
+
+        }
+        sum=sum+(grade*credits[k]);
+        this.sgpa= sum/this.totcreds;
+    }
+    System.out.println(sum);
+}
+void display()
+{
+    System.out.println("USN"+" "+usn);
+    System.out.println("Name"+" "+name);
+    for(int m=0;m<8;m++)
+    {
+        System.out.println("Marks of"+(m+1)+"th subjects"+" "+marks[m]);
+    }
+    System.out.println("SGPA of  "+this.name+"  ="+this.sgpa);
+}
+}
+class Student
+{
+    public static void main(String args[])
+    {
+        StudentDetails s1[]=new StudentDetails[3];
+        for(int j=0;j<3;j++)
+        {
+            s1[j]=new StudentDetails();
+            for(int n=0;n<3;n++)
+            {
+                System.out.println("Enter the details of  "+(n+1)+"th student \n");
+                s1[j].getdetails();
+                s1[j].calculateSGPA();
+                s1[j].display();
+            }
+        }
+    }       
+}
