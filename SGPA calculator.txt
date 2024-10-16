@@ -49,8 +49,8 @@ void calculateSGPA()
 
         }
         sum=sum+(grade*credits[k]);
-        this.sgpa= sum/this.totcreds;
     }
+     this.sgpa= sum/this.totcreds;
     System.out.println(sum);
 }
 void display()
